@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#12131a" />
+  <title>SkinForge — Character Concept Studio</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" href="icons/icon-192.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="app" class="app-shell">
+    <header class="topbar">
+      <div class="brand-block">
+        <div class="brand-mark" aria-hidden="true">SF</div>
+        <div>
+          <p class="eyebrow">CHARACTER CONCEPT STUDIO</p>
+          <h1>SkinForge</h1>
+        </div>
+      </div>
+
+      <div class="project-title-wrap">
+        <label for="projectName">Project</label>
+        <input id="projectName" maxlength="60" value="Untitled Character" aria-label="Project name" />
+      </div>
+
+      <div class="top-actions">
+        <button id="undoBtn" class="icon-btn" title="Undo" aria-label="Undo">↶</button>
+        <button id="redoBtn" class="icon-btn" title="Redo" aria-label="Redo">↷</button>
+        <button id="saveBtn" class="btn secondary">Save</button>
+        <button id="exportBtn" class="btn primary">Export Sheet</button>
+      </div>
+    </header>
+
+    <main class="workspace">
+      <aside class="left-panel panel">
+        <section class="panel-section">
+          <div class="section-heading">
+            <span>BUILD</span>
+            <span class="status-dot"></span>
+          </div>
+          <div class="tool-grid">
+            <button class="tool-btn active" data-tool="select"><span>➤</span>Select</button>
+            <button class="tool-btn" data-tool="draw"><span>✎</span>Draw</button>
+            <button class="tool-btn" data-tool="shape"><span>◇</span>Shape</button>
+            <button class="tool-btn" data-tool="text"><span>T</span>Text</button>
+            <button class="tool-btn" data-tool="erase"><span>⌫</span>Erase</button>
+            <button class="tool-btn" data-tool="image"><span>▧</span>Image</button>
+          </div>
+          <input id="imageUpload" type="file" accept="image/*" hidden />
+        </section>
+
+        <section class="panel-section">
+          <div class="section-heading">CHARACTER DNA</div>
+
+          <label class="field-label">Theme</label>
+          <select id="themeSelect">
+            <option>Wasteland Rockstar</option>
+            <option>Glassborn Hero</option>
+            <option>Ink Witch</option>
+            <option>Laser Rogue</option>
+            <option>Comedic Outlaw</option>
+          </select>
+
+          <label class="field-label">Silhouette</label>
+          <select id="silhouetteSelect">
+            <option>Athletic</option>
+            <option>Heavy Armor</option>
+            <option>Lean & Angular</option>
+            <option>Oversized Comedy</option>
+            <option>Flowing Mystic</option>
+          </select>
+
+          <label class="field-label">Palette</label>
+          <div class="palette-row" id="paletteRow">
+            <button class="swatch active" data-color="#db4f82" style="--swatch:#db4f82"></button>
+            <button class="swatch" data-color="#62d7ff" style="--swatch:#62d7ff"></button>
+            <button class="swatch" data-color="#f5b642" style="--swatch:#f5b642"></button>
+            <button class="swatch" data-color="#9f7aea" style="--swatch:#9f7aea"></button>
+            <input id="customColor" type="color" value="#db4f82" title="Custom color" />
+          </div>
+        </section>
+
+        <section class="panel-section">
+          <div class="section-heading">VIEW</div>
+          <div class="segmented" id="viewSwitcher">
+            <button class="active" data-view="front">Front</button>
+            <button data-view="side">Side</button>
+            <button data-view="back">Back</button>
+          </div>
+        </section>
+      </aside>
+
+      <section class="canvas-stage">
+        <div class="stage-toolbar">
+          <div class="zoom-controls">
+            <button id="zoomOut" class="icon-btn small">−</button>
+            <span id="zoomLabel">100%</span>
+            <button id="zoomIn" class="icon-btn small">+</button>
+            <button id="fitBtn" class="text-btn">Fit</button>
+          </div>
+          <div class="stage-tabs">
+            <button class="active" data-workspace="outfit">Outfit</button>
+            <button data-workspace="gear">Gear</button>
+            <button data-workspace="styles">Styles</button>
+            <button data-workspace="lore">Lore</button>
+            <button data-workspace="submission">Submission</button>
+          </div>
+        </div>
+
+        <div class="canvas-wrap" id="canvasWrap">
+          <canvas id="designCanvas" width="900" height="1100"></canvas>
+          <div class="empty-hint" id="emptyHint">
+            <div class="hint-icon">✦</div>
+            <h2>Start forging your character</h2>
+            <p>Upload a sketch, draw directly, or build from shapes.</p>
+            <button id="uploadHeroBtn" class="btn primary">Upload Reference</button>
+          </div>
+        </div>
+
+        <div class="bottom-strip">
+          <div class="boss-rule">
+            <span class="crown">♛</span>
+            <div>
+              <strong>Boss Lady Rule</strong>
+              <small>Your decisions are the project direction.</small>
+            </div>
+          </div>
+          <div class="autosave-state"><span class="save-pulse"></span><span id="saveState">Autosaved locally</span></div>
+        </div>
+      </section>
+
+      <aside class="right-panel panel">
+        <section class="panel-section compact">
+          <div class="section-heading">
+            <span>LAYERS</span>
+            <button id="addLayerBtn" class="mini-add" title="Add layer">+</button>
+          </div>
+          <div id="layersList" class="layers-list"></div>
+        </section>
+
+        <section class="panel-section">
+          <div class="section-heading">PROPERTIES</div>
+          <div class="property-grid">
+            <label>X<input id="propX" type="number" value="0" /></label>
+            <label>Y<input id="propY" type="number" value="0" /></label>
+            <label>W<input id="propW" type="number" value="100" min="1" /></label>
+            <label>H<input id="propH" type="number" value="100" min="1" /></label>
+            <label>Rotate<input id="propRotation" type="number" value="0" /></label>
+            <label>Opacity<input id="propOpacity" type="number" value="100" min="0" max="100" /></label>
+          </div>
+          <div class="action-row">
+            <button id="duplicateBtn" class="btn secondary small-btn">Duplicate</button>
+            <button id="deleteBtn" class="btn danger small-btn">Delete</button>
+          </div>
+        </section>
+
+        <section class="panel-section">
+          <div class="section-heading">CONCEPT KIT</div>
+          <div class="kit-list">
+            <button data-kit="backbling"><span>◉</span><b>Back Bling</b><small>Design linked accessory</small></button>
+            <button data-kit="pickaxe"><span>⚒</span><b>Pickaxe</b><small>Shape, materials, effects</small></button>
+            <button data-kit="glider"><span>⌁</span><b>Glider</b><small>Silhouette and deployment</small></button>
+            <button data-kit="emote"><span>♫</span><b>Emote</b><small>Motion and personality</small></button>
+          </div>
+        </section>
+
+        <section class="panel-section">
+          <div class="section-heading">FORTNITE FIT</div>
+          <button id="analyzeBtn" class="analyze-card">
+            <span>Analyze Concept</span>
+            <small>Silhouette · readability · originality</small>
+          </button>
+          <div id="scorePanel" class="score-panel hidden">
+            <div class="score-ring"><span id="scoreNumber">0</span><small>/100</small></div>
+            <div class="score-copy">
+              <strong id="scoreTitle">Needs a first pass</strong>
+              <p id="scoreText">Add a clear silhouette, signature item, and palette.</p>
+            </div>
+          </div>
+        </section>
+      </aside>
+    </main>
+
+    <nav class="mobile-nav">
+      <button data-mobile-panel="left">Tools</button>
+      <button data-mobile-center class="active">Canvas</button>
+      <button data-mobile-panel="right">Layers</button>
+    </nav>
+  </div>
+
+  <div id="toast" class="toast" role="status"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
