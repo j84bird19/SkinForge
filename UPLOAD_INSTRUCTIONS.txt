@@ -1,0 +1,19 @@
+SKINFORGE — DESKTOP FIT CORRECTION
+
+This package replaces ONLY the root styles.css file.
+
+Upload steps:
+1. Extract this ZIP.
+2. Open the SkinForge repository on GitHub.
+3. Upload styles.css into the repository root.
+4. Approve replacing the existing styles.css.
+5. Commit the change.
+6. Refresh the GitHub Pages site. If the old layout is cached, close the tab and reopen it.
+
+Corrections included:
+- Full three-column desktop studio stays visible in browser Desktop Site mode.
+- Header, left tools, right layers/properties, and bottom status remain fixed.
+- Only the left and right panels scroll internally.
+- No page-level horizontal or vertical scrolling.
+- Artboard remains centered and automatically fits the available canvas area.
+- Existing tools and JavaScript behavior are unchanged.
