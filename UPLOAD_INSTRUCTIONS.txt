@@ -1,18 +1,20 @@
-SKINFORGE — AVATAR CREATOR UI UPDATE
+SKINFORGE — CASCADING FLOW UI
 
-Upload these files to the ROOT of the SkinForge GitHub repository:
-- index.html
-- styles.css
-- body-builder.js
+Upload these four files to the ROOT of the SkinForge GitHub repository:
+- index.html (replace)
+- body-builder.js (replace)
+- flow-builder.css (new)
+- UPLOAD_INSTRUCTIONS.txt (optional)
 
-Replace the existing versions.
+Do not replace styles.css. The new flow-builder.css loads after it.
 
-This version changes the Body Builder to match the reference UI style:
-- Top tabs for Body, Face, Surface, and Features
-- Left category navigation
-- Center preset thumbnail grid and category-specific sliders
-- Right-side live character preview
-- Normal average proportions at startup
-- Only the selected category's controls are shown
-- Randomize, reset, and Add Body to Canvas remain available
-- Existing SkinForge canvas, layers, tools, and desktop-fit layout remain intact
+Implemented from the hand-drawn flow:
+- Main tabs: Body Builder, Outfit, Pickaxe, Back Bling, Glider, Emote
+- Sub-tabs: Body, Head, Torso, Legs, Arms
+- A category menu on the left
+- B submenu opens beside A
+- C submenu opens beside B when needed
+- Selecting the same active A/B item closes everything to its right
+- Preview automatically zooms by selected category
+- Only relevant sliders appear
+- Normal proportions at startup

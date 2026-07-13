@@ -8,6 +8,7 @@
   <link rel="manifest" href="manifest.json" />
   <link rel="icon" href="icons/icon-192.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="flow-builder.css" />
 </head>
 <body>
   <div id="app" class="app-shell">
@@ -120,56 +121,63 @@
           </div>
 
           
-          <section id="bodyBuilder" class="body-builder" aria-label="Body Builder">
-            <div class="bb-top-tabs">
-              <button class="active" data-bb-tab="body">Body</button>
-              <button data-bb-tab="face">Face</button>
-              <button data-bb-tab="surface">Surface</button>
-              <button data-bb-tab="features">Features</button>
-              <button id="bbClose" class="bb-close" title="Close">×</button>
+          
+          <section id="bodyBuilder" class="body-builder flow-builder" aria-label="Body Builder">
+            <div class="flow-topbar">
+              <div class="flow-main-tabs">
+                <button class="active" data-main="body">Body Builder</button>
+                <button data-main="outfit">Outfit</button>
+                <button data-main="pickaxe">Pickaxe</button>
+                <button data-main="backbling">Back Bling</button>
+                <button data-main="glider">Glider</button>
+                <button data-main="emote">Emote</button>
+              </div>
+              <button id="bbClose" class="flow-close" title="Close">×</button>
             </div>
 
-            <div class="bb-editor">
-              <nav id="bbCategoryNav" class="bb-category-nav" aria-label="Body Builder categories"></nav>
+            <div class="flow-subtabs">
+              <button class="active" data-zone="body">Body</button>
+              <button data-zone="head">Head</button>
+              <button data-zone="torso">Torso</button>
+              <button data-zone="legs">Legs</button>
+              <button data-zone="arms">Arms</button>
+            </div>
 
-              <section class="bb-options-panel">
-                <div class="bb-options-head">
+            <div class="flow-workspace">
+              <aside class="flow-menu flow-menu-a" id="flowMenuA"></aside>
+              <aside class="flow-menu flow-menu-b" id="flowMenuB"></aside>
+              <aside class="flow-menu flow-menu-c" id="flowMenuC"></aside>
+
+              <section class="flow-canvas">
+                <div class="flow-preview-header">
                   <div>
-                    <p class="eyebrow">AVATAR EDITOR</p>
-                    <h2 id="bbPanelTitle">Character Base</h2>
+                    <span class="flow-kicker">LIVE PREVIEW</span>
+                    <strong id="flowPreviewTitle">Body</strong>
                   </div>
-                  <span id="bbPanelHint">Choose a starting form</span>
-                </div>
-
-                <div id="bbOptionTiles" class="bb-option-tiles"></div>
-                <div id="bbSliderPanel" class="bb-slider-panel"></div>
-              </section>
-
-              <aside class="bb-preview">
-                <div class="bb-preview-head">
-                  <div>
-                    <strong>LIVE PREVIEW</strong>
-                    <span id="bbStatus">Average human base</span>
-                  </div>
-                  <div class="bb-preview-actions">
+                  <div class="flow-preview-actions">
                     <button id="bbRandomize" class="icon-btn small" title="Randomize">⟳</button>
                     <button id="bbReset" class="icon-btn small" title="Reset">↺</button>
                   </div>
                 </div>
 
-                <div class="bb-preview-stage">
-                  <svg id="bbSvg" viewBox="0 0 500 760" role="img" aria-label="Constructed character body preview"></svg>
+                <div class="flow-preview-stage">
+                  <svg id="bbSvg" viewBox="0 0 500 760" role="img" aria-label="Character preview"></svg>
                 </div>
 
-                <div class="bb-preview-footer">
-                  <div class="bb-mini-views">
-                    <button class="active">Front</button>
-                    <button disabled>Side</button>
-                    <button disabled>Back</button>
-                  </div>
-                  <button id="bbApply" class="btn primary">Add Body to Canvas</button>
+                <div class="flow-adjustments" id="flowAdjustments"></div>
+
+                <div class="flow-view-cards">
+                  <button class="active" data-view-mode="body"><span class="view-icon">🧍</span><span>Full Body</span></button>
+                  <button data-view-mode="head"><span class="view-icon">◯</span><span>Head</span></button>
+                  <button data-view-mode="eyes"><span class="view-icon">👁</span><span>Eyes</span></button>
+                  <button data-view-mode="detail"><span class="view-icon">•••</span><span>Detail</span></button>
                 </div>
-              </aside>
+              </section>
+            </div>
+
+            <div class="flow-footer">
+              <span id="bbStatus">Average human base</span>
+              <button id="bbApply" class="btn primary">Add Body to Canvas</button>
             </div>
           </section>
         </div>
