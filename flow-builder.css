@@ -53,3 +53,164 @@
  .flow-slider label,.flow-slider output{font-size:5px}.flow-slider output{padding:2px}.flow-view-cards{gap:4px;padding:5px}.flow-view-cards button{border-radius:6px;font-size:5px}.view-icon{font-size:13px}
  .flow-footer{padding:0 7px}.flow-footer span{font-size:6px}.flow-footer .btn{padding:5px 7px;font-size:6px}
 }
+
+
+/* ===== FULL CENTRAL WORKSPACE FIX ===== */
+.canvas-stage {
+  position: relative !important;
+}
+
+/* While Body Builder is active, remove the old side panels and give the editor the full app width. */
+.workspace.body-builder-mode {
+  grid-template-columns: minmax(0, 1fr) !important;
+}
+.workspace.body-builder-mode > .left-panel,
+.workspace.body-builder-mode > .right-panel {
+  display: none !important;
+}
+.workspace.body-builder-mode > .canvas-stage {
+  grid-column: 1 / -1 !important;
+  width: 100% !important;
+  min-width: 0 !important;
+}
+
+/* The builder is moved by JS to be a direct child of canvas-stage. */
+.canvas-stage > .flow-builder {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  z-index: 100 !important;
+}
+
+/* Match the drawn layout: broad top tabs, narrow cascading A/B/C columns, large preview. */
+.canvas-stage > .flow-builder .flow-workspace {
+  grid-template-columns: 92px 0 0 minmax(0, 1fr);
+}
+.canvas-stage > .flow-builder .flow-workspace.has-b {
+  grid-template-columns: 92px 92px 0 minmax(0, 1fr);
+}
+.canvas-stage > .flow-builder .flow-workspace.has-c {
+  grid-template-columns: 92px 92px 92px minmax(0, 1fr);
+}
+
+.canvas-stage > .flow-builder .flow-main-tabs button {
+  min-width: 110px;
+  flex: 1 1 110px;
+}
+.canvas-stage > .flow-builder .flow-subtabs button {
+  min-width: 88px;
+}
+
+/* The selected-part preview is the dominant area. */
+.canvas-stage > .flow-builder .flow-canvas {
+  grid-template-rows: 44px minmax(0, 1fr) auto 96px;
+}
+.canvas-stage > .flow-builder .flow-preview-stage {
+  padding: 14px;
+}
+.canvas-stage > .flow-builder #bbSvg {
+  max-width: 90%;
+  max-height: 96%;
+}
+
+/* Controls are legible and spaced like the sketch instead of a miniature toolbar. */
+.canvas-stage > .flow-builder .flow-adjustments {
+  grid-template-columns: repeat(2, minmax(220px, 1fr));
+  gap: 12px 22px;
+  padding: 12px 18px;
+}
+.canvas-stage > .flow-builder .flow-slider {
+  grid-template-columns: 90px minmax(140px, 1fr) 38px;
+}
+.canvas-stage > .flow-builder .flow-slider label {
+  font-size: 10px;
+}
+.canvas-stage > .flow-builder .flow-slider output {
+  font-size: 9px;
+}
+.canvas-stage > .flow-builder .flow-view-cards {
+  gap: 12px;
+  padding: 12px 16px;
+}
+.canvas-stage > .flow-builder .flow-view-cards button {
+  font-size: 10px;
+}
+.canvas-stage > .flow-builder .view-icon {
+  font-size: 25px;
+}
+
+/* Desktop-site phones still get the full workspace, but with compact readable columns. */
+@media (min-width:700px) and (max-width:1100px) {
+  .canvas-stage > .flow-builder {
+    inset: 0 !important;
+  }
+  .canvas-stage > .flow-builder .flow-workspace {
+    grid-template-columns: 70px 0 0 minmax(0,1fr);
+  }
+  .canvas-stage > .flow-builder .flow-workspace.has-b {
+    grid-template-columns: 70px 70px 0 minmax(0,1fr);
+  }
+  .canvas-stage > .flow-builder .flow-workspace.has-c {
+    grid-template-columns: 70px 70px 70px minmax(0,1fr);
+  }
+  .canvas-stage > .flow-builder .flow-main-tabs button {
+    min-width: 82px;
+    flex-basis: 82px;
+    font-size: 8px;
+  }
+  .canvas-stage > .flow-builder .flow-subtabs button {
+    min-width: 66px;
+    font-size: 8px;
+  }
+  .canvas-stage > .flow-builder .flow-menu button {
+    min-height: 54px;
+    font-size: 7px;
+  }
+  .canvas-stage > .flow-builder .flow-menu button .flow-menu-icon {
+    font-size: 16px;
+  }
+  .canvas-stage > .flow-builder .flow-canvas {
+    grid-template-rows: 38px minmax(0,1fr) auto 78px;
+  }
+  .canvas-stage > .flow-builder .flow-adjustments {
+    grid-template-columns: repeat(2,minmax(150px,1fr));
+    gap: 8px 12px;
+    padding: 8px 10px;
+  }
+  .canvas-stage > .flow-builder .flow-slider {
+    grid-template-columns: 64px minmax(90px,1fr) 28px;
+  }
+  .canvas-stage > .flow-builder .flow-slider label {
+    font-size: 7px;
+  }
+  .canvas-stage > .flow-builder .flow-view-cards {
+    padding: 8px;
+    gap: 7px;
+  }
+  .canvas-stage > .flow-builder .flow-view-cards button {
+    font-size: 7px;
+  }
+  .canvas-stage > .flow-builder .view-icon {
+    font-size: 18px;
+  }
+}
+
+/* True mobile mode: preserve usable full-screen editing. */
+@media (max-width:699px) {
+  .workspace.body-builder-mode {
+    display: block !important;
+  }
+  .canvas-stage > .flow-builder {
+    position: fixed !important;
+    inset: 64px 0 57px !important;
+  }
+  .canvas-stage > .flow-builder .flow-workspace,
+  .canvas-stage > .flow-builder .flow-workspace.has-b,
+  .canvas-stage > .flow-builder .flow-workspace.has-c {
+    grid-template-columns: 58px 58px 58px minmax(0,1fr);
+  }
+}

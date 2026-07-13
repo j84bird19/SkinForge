@@ -1,6 +1,10 @@
 (() => {
 "use strict";
 const $=id=>document.getElementById(id),builder=$("bodyBuilder");if(!builder)return;
+const appWorkspace=document.querySelector(".workspace");
+const canvasStage=document.querySelector(".canvas-stage");
+if(canvasStage && builder.parentElement!==canvasStage){canvasStage.appendChild(builder);}
+
 const workspace=builder.querySelector(".flow-workspace"),menuA=$("flowMenuA"),menuB=$("flowMenuB"),menuC=$("flowMenuC"),adjustments=$("flowAdjustments"),canvasPanel=builder.querySelector(".flow-canvas"),svg=$("bbSvg"),imageUpload=$("imageUpload"),bodyTab=document.querySelector("[data-body-builder]"),previewTitle=$("flowPreviewTitle"),status=$("bbStatus");
 const normal={height:100,headSize:100,neckWidth:100,shoulders:100,chest:100,stomach:100,waist:100,hips:100,armLength:100,armWidth:100,legLength:100,thighs:100,calves:100,hands:100,feet:100,faceWidth:100,forehead:100,jaw:100,chin:100,eyeSize:100,eyeSpacing:100,eyeHeight:100,eyeAngle:100,browSize:100,noseSize:100,mouthWidth:100,lipSize:100,earSize:100};
 const state={main:"body",zone:"body",a:null,b:null,c:null,view:"body",base:"human",skin:"#d79a7b",eyes:"#62d7ff",lips:"#b94f67",values:{...normal}};
@@ -39,8 +43,8 @@ document.querySelectorAll("[data-zone]").forEach(b=>b.onclick=()=>{state.zone=b.
 document.querySelectorAll("[data-view-mode]").forEach(b=>b.onclick=()=>{state.view=b.dataset.viewMode;canvasPanel.dataset.zoom=state.view;document.querySelectorAll("[data-view-mode]").forEach(x=>x.classList.toggle("active",x===b))});
 $("bbReset").onclick=()=>{state.values={...normal};state.a=state.b=state.c=null;state.zone="body";state.base="human";state.eyes="#62d7ff";document.querySelectorAll("[data-zone]").forEach(b=>b.classList.toggle("active",b.dataset.zone==="body"));renderMenus();draw()};
 $("bbRandomize").onclick=()=>{Object.keys(state.values).forEach(k=>state.values[k]=Math.round(85+Math.random()*30));renderAdjust();draw()};
-function open(){builder.classList.remove("hidden");document.querySelectorAll(".stage-tabs button").forEach(b=>b.classList.remove("active"));bodyTab?.classList.add("active")}
-function close(){builder.classList.add("hidden");bodyTab?.classList.remove("active");document.querySelector('[data-workspace="outfit"]')?.classList.add("active")}
+function open(){appWorkspace?.classList.add("body-builder-mode");builder.classList.remove("hidden");document.querySelectorAll(".stage-tabs button").forEach(b=>b.classList.remove("active"));bodyTab?.classList.add("active")}
+function close(){builder.classList.add("hidden");appWorkspace?.classList.remove("body-builder-mode");bodyTab?.classList.remove("active");document.querySelector('[data-workspace="outfit"]')?.classList.add("active")}
 $("bbClose").onclick=close;bodyTab?.addEventListener("click",open);document.querySelectorAll("[data-workspace]").forEach(b=>b.addEventListener("click",()=>builder.classList.add("hidden")));
 $("bbApply").onclick=()=>{const clone=svg.cloneNode(true);clone.setAttribute("xmlns","http://www.w3.org/2000/svg");const blob=new Blob([new XMLSerializer().serializeToString(clone)],{type:"image/svg+xml"}),url=URL.createObjectURL(blob),img=new Image();img.onload=()=>{const c=document.createElement("canvas");c.width=900;c.height=1100;c.getContext("2d").drawImage(img,105,8,690,1048);URL.revokeObjectURL(url);c.toBlob(p=>{const f=new File([p],`body-${Date.now()}.png`,{type:"image/png"}),d=new DataTransfer();d.items.add(f);imageUpload.files=d.files;imageUpload.dispatchEvent(new Event("change",{bubbles:true}));close()},"image/png")};img.src=url};
 renderMenus();draw();open();

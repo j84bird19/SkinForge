@@ -1,20 +1,17 @@
-SKINFORGE — CASCADING FLOW UI
+SKINFORGE — FULL WORKSPACE BODY BUILDER FIX
 
-Upload these four files to the ROOT of the SkinForge GitHub repository:
-- index.html (replace)
-- body-builder.js (replace)
-- flow-builder.css (new)
-- UPLOAD_INSTRUCTIONS.txt (optional)
+Upload and replace:
+- flow-builder.css
+- body-builder.js
 
-Do not replace styles.css. The new flow-builder.css loads after it.
+index.html does not need to be replaced for this correction.
 
-Implemented from the hand-drawn flow:
-- Main tabs: Body Builder, Outfit, Pickaxe, Back Bling, Glider, Emote
-- Sub-tabs: Body, Head, Torso, Legs, Arms
-- A category menu on the left
-- B submenu opens beside A
-- C submenu opens beside B when needed
-- Selecting the same active A/B item closes everything to its right
-- Preview automatically zooms by selected category
-- Only relevant sliders appear
-- Normal proportions at startup
+What changed:
+- Body Builder now replaces the whole central app workspace while active.
+- The old left Build/Character DNA panel and right Layers/Properties panel are hidden only while Body Builder is open.
+- The app's main top header stays fixed.
+- Body Builder's own top and second-row tabs use the full available width.
+- A/B/C cascading menus appear as real side columns.
+- The preview becomes the large dominant workspace.
+- Sliders and bottom preview cards are no longer miniature.
+- Closing Body Builder restores the original canvas and side panels.
