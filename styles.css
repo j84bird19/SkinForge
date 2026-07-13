@@ -646,3 +646,26 @@ canvas {
   .bb-sidebar { border-right:0; }
   .bb-preview { display:none; }
 }
+
+
+/* Body Builder category headers remain compact until opened. */
+.bb-scroll details:not([open]) summary {
+  border-bottom:0;
+}
+.bb-scroll details:not([open]) {
+  background:#171923;
+}
+.bb-scroll details:not([open]) summary::after {
+  content:"+";
+  float:right;
+  color:var(--accent);
+  font-size:14px;
+  line-height:1;
+}
+.bb-scroll details[open] summary::after {
+  content:"−";
+  float:right;
+  color:var(--accent);
+  font-size:14px;
+  line-height:1;
+}

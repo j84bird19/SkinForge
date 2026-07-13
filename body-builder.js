@@ -246,6 +246,17 @@
     status.textContent = `${get("bbPreset")} ${base} · ${presentation}`;
   }
 
+
+  // Keep the editor clean: only one control category stays open at a time.
+  document.querySelectorAll(".bb-scroll details").forEach(section => {
+    section.addEventListener("toggle", () => {
+      if (!section.open) return;
+      document.querySelectorAll(".bb-scroll details").forEach(other => {
+        if (other !== section) other.open = false;
+      });
+    });
+  });
+
   function openBuilder() {
     builder.classList.remove("hidden");
     document.querySelectorAll(".stage-tabs button").forEach(b => b.classList.remove("active"));
@@ -273,12 +284,12 @@
 
   $("bbReset").addEventListener("click", () => {
     Object.assign(values, defaults);
-    $("bbPreset").value = "athletic";
+    $("bbPreset").value = "average";
     $("bbBase").value = "human";
     $("bbPresentation").value = "feminine";
     $("bbHeadShape").value = "oval";
     ["bbHorns","bbEars","bbTail","bbLeaves","bbAntennae","bbExtraEyes"].forEach(id => $(id).checked = false);
-    applyPreset("athletic");
+    applyPreset("average");
   });
 
   $("bbRandomize").addEventListener("click", () => {
@@ -323,6 +334,6 @@
     }
   });
 
-  applyPreset("athletic");
+  applyPreset("average");
   openBuilder();
 })();

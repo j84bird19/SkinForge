@@ -1,25 +1,17 @@
-SKINFORGE BODY BUILDER UPDATE
+SKINFORGE BODY BUILDER — NORMAL DEFAULT + COLLAPSED CONTROLS
 
 Upload these three files to the ROOT of your SkinForge GitHub repository:
 - index.html
 - styles.css
 - body-builder.js
 
-Replace index.html and styles.css when GitHub asks.
-body-builder.js is new.
+Replace all three existing versions.
 
-Do not delete or replace app.js, manifest.json, service-worker.js, or the icons folder.
-
-What this build adds:
-- New Body Builder main workspace
-- Character bases: human, animal, plant, fruit/food, robot, alien, monster, custom
-- Presentation and body presets
-- Adjustable body proportions
-- Detailed head and face controls
-- Eye, lip, and body colors
-- Horns, ears, tail, leaves, antennae, and extra eyes
-- Live SVG character preview
-- Randomize and reset
-- “Add Body to Canvas” converts the constructed body into a new image layer
-- Existing SkinForge tools remain intact
-- Previous desktop-fit corrections remain included
+Changes in this update:
+- Body Builder now starts with normal/average human proportions.
+- No exaggerated athletic proportions are applied at startup.
+- All editing categories start collapsed.
+- Click a category heading to reveal only that category's controls.
+- Opening one category automatically closes the others.
+- Category headers show + when closed and − when open.
+- Existing Body Builder features and desktop-fit layout remain intact.
