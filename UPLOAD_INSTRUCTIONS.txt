@@ -1,17 +1,18 @@
-SKINFORGE BODY BUILDER — NORMAL DEFAULT + COLLAPSED CONTROLS
+SKINFORGE — AVATAR CREATOR UI UPDATE
 
-Upload these three files to the ROOT of your SkinForge GitHub repository:
+Upload these files to the ROOT of the SkinForge GitHub repository:
 - index.html
 - styles.css
 - body-builder.js
 
-Replace all three existing versions.
+Replace the existing versions.
 
-Changes in this update:
-- Body Builder now starts with normal/average human proportions.
-- No exaggerated athletic proportions are applied at startup.
-- All editing categories start collapsed.
-- Click a category heading to reveal only that category's controls.
-- Opening one category automatically closes the others.
-- Category headers show + when closed and − when open.
-- Existing Body Builder features and desktop-fit layout remain intact.
+This version changes the Body Builder to match the reference UI style:
+- Top tabs for Body, Face, Surface, and Features
+- Left category navigation
+- Center preset thumbnail grid and category-specific sliders
+- Right-side live character preview
+- Normal average proportions at startup
+- Only the selected category's controls are shown
+- Randomize, reset, and Add Body to Canvas remain available
+- Existing SkinForge canvas, layers, tools, and desktop-fit layout remain intact
