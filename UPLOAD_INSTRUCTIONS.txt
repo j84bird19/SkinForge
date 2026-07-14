@@ -1,17 +1,18 @@
-SKINFORGE — FULL WORKSPACE BODY BUILDER FIX
+SKINFORGE — CLEAN RESPONSIVE RESET
 
-Upload and replace:
+Upload and replace BOTH:
 - flow-builder.css
 - body-builder.js
 
-index.html does not need to be replaced for this correction.
+This is not another CSS patch. It completely replaces the accumulated flow-builder stylesheet.
 
-What changed:
-- Body Builder now replaces the whole central app workspace while active.
-- The old left Build/Character DNA panel and right Layers/Properties panel are hidden only while Body Builder is open.
-- The app's main top header stays fixed.
-- Body Builder's own top and second-row tabs use the full available width.
-- A/B/C cascading menus appear as real side columns.
-- The preview becomes the large dominant workspace.
-- Sliders and bottom preview cards are no longer miniature.
-- Closing Body Builder restores the original canvas and side panels.
+Fixes:
+- Removes the conflicting stacked overrides that broke the UI.
+- Keeps the A/B/C menus vertical at every screen width.
+- Prevents browser-default white buttons.
+- Keeps the full body above the bottom view cards.
+- Hides the old mobile Tools / Canvas / Layers bar while Body Builder is open.
+- Uses the same desktop-style structure even when Chrome reports a narrow phone viewport.
+- Restores the regular SkinForge panels and navigation when Body Builder closes.
+
+After committing, fully close the browser tab and reopen SkinForge so the old CSS is not reused.
